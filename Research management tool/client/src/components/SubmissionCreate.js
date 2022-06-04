@@ -18,6 +18,7 @@ function CreateSubmission() {
     const [name, setName] = useState();
     const [desc, setDesc] = useState();
     const [deadline, setDeadline] = useState();
+    const [panel, setPanel] = useState("NO");
   
     const handleSubmit = (event) => {
       const form = event.currentTarget;
@@ -42,7 +43,8 @@ function CreateSubmission() {
         const newSubmission = {
             name,
             desc,
-            deadline
+            deadline,
+            panel
         }
 
         axios.post("http://localhost:8070/submission/add", newSubmission).then((res)=>{
@@ -92,6 +94,20 @@ function CreateSubmission() {
                     required />
                     <Form.Control.Feedback type="invalid">
                     Please enter a deadline
+                    </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Row} md="2" controlId="validationCustom04">
+                    <Form.Label className='mt-3'>Panel access</Form.Label>
+                    <select id="inputState" class="form-select"
+                    onChange={(e) => {
+                        setPanel(e.target.value);
+                    }}
+                    required>
+                    <option selected>NO</option>
+                    <option>YES</option>
+                    </select>
+                    <Form.Control.Feedback type="invalid">
+                    Please provide a selection.
                     </Form.Control.Feedback>
                 </Form.Group>
                 </Row>

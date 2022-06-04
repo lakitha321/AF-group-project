@@ -34,12 +34,13 @@ routerA.post(
   upload.single('file'),
   async (req, res) => {
     try {
-      const { grupid, assignmentid, assignmentname } = req.body;
+      const { grupid, assignmentid, assignmentname, panel } = req.body;
       const { path, mimetype } = req.file;
       const file = new File({
         grupid,
         assignmentid,
         assignmentname,
+        panel,
         file_path: path,
         file_mimetype: mimetype
       });
@@ -78,6 +79,16 @@ routerA.get('/get/:aid/:gid', async (req, res) => {
   }
 });
 
+routerA.get('/get/:gid', async (req, res) => {
+  try {
+    const files = await File.find({grupid:req.params.gid}).then((sub) => {
+      res.json(sub);
+    })
+  } catch (error) {
+    res.status(400).send('Error');
+  }
+});
+
 routerA.get('/download/:id', async (req, res) => {
   try {
     const file = await File.findById(req.params.id);
@@ -89,6 +100,25 @@ routerA.get('/download/:id', async (req, res) => {
     res.status(400).send('Error while downloading file. Try again later.');
   }
 });
+
+routerA.route("/update/:id").put(async (req,res)=>{
+
+  let id = req.params.id;
+  const {status, feedback} = req.body;
+
+  const updateSub = {
+    status,
+    feedback
+  }
+
+  const update = await File.findByIdAndUpdate(id, updateSub).then(()=>{
+      res.status(200).send({status: "User Updated"});
+  }).catch((err)=>{
+      console.log(err);
+      res.status(500).send({status: "Error with updating data"});
+  })
+
+})
 
 routerA.route('/deleteSubmission/:id').delete(async (req, res) => {
 

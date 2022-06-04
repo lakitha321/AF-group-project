@@ -61,7 +61,7 @@ routerA.get('/getAllAssigbments', async (req, res) => {
     const sortedByCreationDate = files.sort(
       (a, b) => b.createdAt - a.createdAt
     );
-    res.send(sortedByCreationDate);
+    res.send({dat: sortedByCreationDate});
   } catch (error) {
     res.status(400).send('Error while getting list of files. Try again later.');
   }

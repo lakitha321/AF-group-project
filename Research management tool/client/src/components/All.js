@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import download from 'downloadjs';
-// import {BrowserRouter as Router, Link} from 'react-router-dom';
-// import axios from 'axios';
-// import { confirm } from "react-confirm-box";
- import { UserContext } from "../App";
+import { UserContext } from "../App";
 
 const FilesList = () => {
 

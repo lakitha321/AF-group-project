@@ -9,12 +9,13 @@ import { UserContext } from "../App";
 import Card from "react-bootstrap/Card";
 
 const User = () => {
-  const { id, name, grpid } = useParams();
+  const { id, name, grpid, panel } = useParams();
 
   const details = {
       id,
       name,
-      grpid
+      grpid,
+      panel
   }
 
   return details;
@@ -62,6 +63,7 @@ const StudentSubArea = (props) => {
             formData.append('grupid', description);
             formData.append('assignmentid', dataset.id);
             formData.append('assignmentname', title);
+            formData.append('panel', dataset.panel);
 
             if(description === "Not defined"){
               alert("You must have a group to submit!");
@@ -161,10 +163,10 @@ const StudentSubArea = (props) => {
       {errorms && <p>{errorms}</p>}
           {filesList.length > 0 ? (
             filesList.map(
-              ({ _id, grupid, assignmentname, file_path, file_mimetype, createdAt }) => (
+              ({ _id, grupid, assignmentname, file_path, file_mimetype, createdAt, status, feedback }) => (
                 <div className="col-12" align="center" key={_id}>
                   <br/>
-                  <p class="fs-4" style={{ color: 'white'}}>{assignmentname} <green style={{color:"#6FD25A"}}>submitted</green></p><br/>
+                  <p className="fs-4" style={{ color: 'white'}}>{assignmentname} <green style={{color:"#6FD25A"}}>submitted</green></p><br/>
                   <Card style={{ width: '60rem' }}>
                   <Card.Body>
                     <br/>
@@ -173,19 +175,19 @@ const StudentSubArea = (props) => {
                       <br/>
                       <Card.Text align="center">Submitted on {createdAt[0]}{createdAt[1]}{createdAt[2]}{createdAt[3]}{createdAt[4]}{createdAt[5]}{createdAt[6]}{createdAt[7]}{createdAt[8]}{createdAt[9]} at {createdAt[11]}{createdAt[12]}{createdAt[13]}{createdAt[14]}{createdAt[15]}</Card.Text>
                       <br/>
-                      <div class="container">
-                      <div class="row">
-                        <div class="col">
-                        <button type="button" class="btn btn-warning" style={{opacity: "90%", width: '20rem'}} onClick={() => downloadFile(_id, file_path, file_mimetype)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                      <div className="container">
+                      <div className="row">
+                        <div className="col">
+                        <button type="button" className="btn btn-warning" style={{opacity: "90%", width: '20rem'}} onClick={() => downloadFile(_id, file_path, file_mimetype)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-download" viewBox="0 0 16 16">
                           <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                           <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
                         </svg>&nbsp;&nbsp;Download
                         </button>
                         </div>
-                        <div class="col">
-                        <button type="button" class="btn btn-danger" style={{opacity: "90%", width: '20rem'}} onClick={() => deleteFile(_id)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                        <div className="col">
+                        <button type="button" className="btn btn-danger" style={{opacity: "90%", width: '20rem'}} onClick={() => deleteFile(_id)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
                         <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                         </svg>&nbsp;&nbsp;Delete
                         </button>
@@ -195,13 +197,28 @@ const StudentSubArea = (props) => {
                       <br/><br/>  
                   </Card.Body>
                   </Card><br/><br/>
+                  {status ? (
+                    <>
+                    <p className="fs-4" style={{ color: 'white'}}>Status : {status}</p>
+                    </>
+                  ):(
+                    <></>
+                  )}
+                  {feedback ? (
+                    <>
+                    <p className="fs-4" style={{ color: 'white'}}>Panel Feedback</p>
+                    <p className="fs-5" style={{ color: 'white'}}>{feedback}</p>
+                    </>
+                  ):(
+                    <></>
+                  )}
                 </div>
               )
             )
           ) : (
             <div className="col-12" align="center">
               <br/>
-                <p class="fs-4" style={{color:"red"}}>Upload before the deadline!!</p><br/>
+                <p className="fs-4" style={{color:"red"}}>Upload before the deadline!!</p><br/>
             <Card style={{ width: '60rem', backgroundColor:'transparent' }}>
             <Card.Body>
               <br/>

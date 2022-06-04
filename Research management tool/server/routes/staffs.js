@@ -118,6 +118,28 @@ router.route("/get/:id").get(async (req,res)=>{
 
 })
 
+router.route("/getcosup").get(async (req,res)=>{
+
+    const Staffs = await Staff.find({role:'Co-supervisor'}).then((Staffs)=>{
+        res.json(Staffs)
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status: false});
+    })
+
+})
+
+router.route("/getsup").get(async (req,res)=>{
+
+    const Staffs = await Staff.find({role:'Supervisor'}).then((Staffs)=>{
+        res.json(Staffs)
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status: false});
+    })
+
+})
+
 router.route("/log/:email").post(async (req,res)=>{
 
     let userEmail = req.params.email;
@@ -132,6 +154,30 @@ router.route("/log/:email").post(async (req,res)=>{
         }
     }).catch((err)=>{
         res.status(500).send({status: false});
+    })
+
+})
+
+router.route("/addtopanel/:email").put(async (req,res)=>{
+
+    let email = req.params.email;
+
+    const update = await Staff.findOneAndUpdate({email:email}, {panel:"YES"}).then(()=>{
+        res.json("Added");
+    }).catch((err)=>{
+        res.json("Error");
+    })
+
+})
+
+router.route("/removefrompanel/:email").put(async (req,res)=>{
+
+    let email = req.params.email;
+
+    const update = await Staff.findOneAndUpdate({email:email}, {panel:"NO"}).then(()=>{
+        res.json("Removed");
+    }).catch((err)=>{
+        res.json("Error");
     })
 
 })

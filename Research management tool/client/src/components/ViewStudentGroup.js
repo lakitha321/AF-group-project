@@ -180,13 +180,14 @@ export default function StudentGroup(){
 
     return(
         <>
+        <br/><br/>
         {student.groupid != "Not defined" ? (
         <div className="col-12" align="center">
-            <br/>
-        <Card className="mt-5 mb-5" style={{ width: '50rem' }}>
+        <Card className="mt-3 mb-5" style={{ width: '50rem' }}>
         <Card.Body>
         <Card.Title align="center">{studentGrp.name}</Card.Title>
         <Card.Text align="center">Research topic : {studentGrp.topic}</Card.Text>
+        {window.localStorage.setItem('topic', studentGrp.topic)}
         <br/>
         <Card.Text align="left">Member1 : <a href="">{studentGrp.member1}</a></Card.Text>
         <Card.Text align="left">Member2 : <a href="">{studentGrp.member2}</a></Card.Text>
@@ -195,7 +196,38 @@ export default function StudentGroup(){
         <Card.Text align="left">Supervisor : {studentGrp.supervisor}</Card.Text>
         <Card.Text align="left">Co-supervisor : {studentGrp.cosupervisor}</Card.Text>
         <Card.Text align="left">Panel : {studentGrp.panel}</Card.Text>
-        <Card.Text align="left">Marks : {studentGrp.marks}</Card.Text>
+        {studentGrp.supervisor === "Not defined" ? (
+            <>
+            
+            <div align='center'>
+                <a href="/requestsupervisor">
+                <button className="btn btn-primary">Request a supervisor</button>
+                </a>
+            </div>
+            <br/><br/>
+            </>
+        ):(
+            <>
+            {studentGrp.cosupervisor === "Not defined" ? (
+                <>
+                
+                <div align='center'>
+                <a href="/requestcosupervisor">
+                    <button className="btn btn-primary">Request a co-supervisor</button>
+                </a>
+                </div>
+                <br/><br/>
+                </>
+            ):(
+                <>
+                <a href="grpcht">
+                <button className="btn btn-success">Group chat</button>
+                </a>
+                <br/><br/>
+                </>
+            )}
+            </>
+        )}
         {studentGrp.member4 == "Unknown" ? (
             <Form noValidate validated={validated} onSubmit={handleSubmit1}>
             <Row className="mb-3">

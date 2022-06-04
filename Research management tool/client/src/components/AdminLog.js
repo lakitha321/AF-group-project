@@ -83,7 +83,7 @@ function AdminLog() {
                     </Form.Group>
                     </Row>
                     <br/>
-                    <Button type="submit">Sign up</Button>
+                    <Button type="submit">Sign in</Button>
                 </Form>
             </Card.Body>
             </Card>

@@ -34,6 +34,7 @@ function UpdateSubmission() {
     const [name, setName] = useState(data.name);
     const [desc, setDesc] = useState(data.desc);
     const [deadline, setDeadline] = useState(data.deadline);
+    const [panel, setPanel] = useState("NO");
   
     const handleSubmit = (event) => {
       const form = event.currentTarget;
@@ -58,7 +59,8 @@ function UpdateSubmission() {
         const updateSubmission = {
             name,
             desc,
-            deadline
+            deadline,
+            panel
         }
 
         axios.put(`http://localhost:8070/submission/update/${data.id}`, updateSubmission).then((res)=>{
@@ -108,6 +110,20 @@ function UpdateSubmission() {
                     required />
                     <Form.Control.Feedback type="invalid">
                     Please enter a deadline
+                    </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Row} md="2" controlId="validationCustom04">
+                    <Form.Label className='mt-3'>Panel access</Form.Label>
+                    <select id="inputState" class="form-select"
+                    onChange={(e) => {
+                        setPanel(e.target.value);
+                    }}
+                    required>
+                    <option selected>NO</option>
+                    <option>YES</option>
+                    </select>
+                    <Form.Control.Feedback type="invalid">
+                    Please provide a selection.
                     </Form.Control.Feedback>
                 </Form.Group>
                 </Row>

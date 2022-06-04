@@ -16,6 +16,8 @@ import StudentSubmissions from './components/StudentSubmission';
 import StudentSubArea from './components/StudentSubArea';
 import CreateGroup from './components/CreateGroup';
 import StudentGroup from './components/ViewStudentGroup';
+import RequestSupervisor from './components/RequestSupervisor';
+import RequestCoSupervisor from './components/RequestCoSupervisor';
 import AdminLog from './components/AdminLog';
 import AdminHome from './components/AdminHome';
 import AdminUpdate from './components/AdminUpdate';
@@ -26,6 +28,23 @@ import StaffRegister from './components/StaffRegister';
 import AllSubmissions from './components/SubmissionAll';
 import CreateSubmission from './components/SubmissionCreate';
 import UpdateSubmission from './components/SubmissionUpdate';
+import UpdateStaffRole from './components/AddReArea';
+import StaffHome from './components/StaffHome';
+import StaffRequest from './components/StaffRequests';
+import GroupChat from './components/GroupChat';
+import AcceptedGroups from './components/AcceptedGroups';
+import StaffGroupChat from './components/StaffGroupChat';
+import AdminGroups from './components/AdminGroups';
+import CreatePanelMembers from './components/CreatePanelMembers';
+import CreatePanel from './components/CreatePanel';
+import Panel from './components/Panels';
+import StudentPanel from './components/StudentPanel';
+import SubmittedFiles from './components/StudentSubmittedFiles';
+import GroupSubmittedFiles from './components/StudentGroupSubmittedFiles';
+import StaffPanel from './components/StaffPanel';
+import StaffStudentSubmissionView from './components/StaffStudentSubmissionView';
+import AssignedGroups from './components/AssignedGroups';
+import PanelStudentSubmissionView from './components/PanelStudentSubmissionView';
 
 //id, name, email, age, gender, nic, address, mobile, password
 
@@ -43,11 +62,14 @@ const Routing = () => {
       <Route path='/allstudents' element={<AllStudents />} />
       <Route path='/studentfiles' element={<StudentFilesList />} />
       <Route path='/studentsubmissions' element={<StudentSubmissions />} />
-      <Route path='/studentsubarea/:id/:name/:grpid' element={<StudentSubArea />} />
+      <Route path='/studentsubarea/:id/:name/:grpid/:panel' element={<StudentSubArea />} />
       <Route path='/creategroup' element={<CreateGroup />} />
       <Route path='/viewgroup' element={<StudentGroup />} />
       <Route path='/allstaff' element={<AllStaff />} />
+      <Route path='/requestsupervisor' element={<RequestSupervisor />} />
+      <Route path='/requestcosupervisor' element={<RequestCoSupervisor />} />
       <Route path='/staffreg' element={<StaffRegister />} />
+      <Route path='/udatestaffrole/:id/:crole/:frole' element={<UpdateStaffRole />} />
       <Route path='/updatestaff/:id/:name/:email/:age/:gender/:nic/:address/:mobile/:password' element={<StaffUpdate />} />
       <Route path='/add' element={<Add />} />
       <Route path='/update' element={<Update />} />
@@ -60,6 +82,22 @@ const Routing = () => {
       <Route exact path='/updatesubmission/:id/:name/:desc/:deadline' element={<UpdateSubmission />} />
       <Route path='/submissions' element={<FilesList />} />
       <Route path='/home' element={<All />} />
+      <Route path='/stfhome' element={<StaffHome />} />
+      <Route path='/staffrequests' element={<StaffRequest />} />
+      <Route path='/grpcht' element={<GroupChat />} />
+      <Route path='/acceptedgrps' element={<AcceptedGroups />} />
+      <Route path='/stfgrpcht/:grpname' element={<StaffGroupChat />} />
+      <Route path='/admingrp' element={<AdminGroups />} />
+      <Route path='/panelmember' element={<CreatePanelMembers />} />
+      <Route path='/createpanel' element={<CreatePanel />} />
+      <Route path='/panel' element={<Panel />} />
+      <Route path='/studentpanel' element={<StudentPanel />} />
+      <Route path='/submittedfiles' element={<SubmittedFiles />} />
+      <Route path='/staffpanel' element={<StaffPanel />} />
+      <Route path='/groupsubmittedfiles/:name' element={<GroupSubmittedFiles />} />
+      <Route path='/staffStudentsubmissionview/:name' element={<StaffStudentSubmissionView />} />
+      <Route path='/panelstudentsubmissionview/:name' element={<PanelStudentSubmissionView />} />
+      <Route path='/assignedgroups/:name' element={<AssignedGroups />} />
       <Route path='/' element={<Landing />} />
     </Routes>
   )

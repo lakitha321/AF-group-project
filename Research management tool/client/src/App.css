@@ -53,3 +53,22 @@ body {
 .table-hover tbody tr:hover td {
   color: #2eff27;
 }
+
+.scroll-bg{
+  width: 400px;
+}
+
+.scroll-div{
+  width: 1250px;
+  height: 500px;
+  overflow: hidden;
+  overflow-y: scroll;
+  transform: rotate(180deg);
+  direction:rtl;
+  text-align:left;
+}
+
+.scroll-object{
+  padding: 20px;
+  transform: rotate(180deg);
+}

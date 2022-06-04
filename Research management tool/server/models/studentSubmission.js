@@ -17,6 +17,11 @@ const studentSubSchema = new mongoose.Schema(
       required: true,
       trim: true
     },
+    panel: {
+      type: String,
+      required: true,
+      trim: true
+    },
     file_path: {
       type: String,
       required: true
@@ -24,6 +29,12 @@ const studentSubSchema = new mongoose.Schema(
     file_mimetype: {
       type: String,
       required: true
+    },
+    feedback: {
+      type: String
+    },
+    status: {
+      type: String
     }
   },
   {

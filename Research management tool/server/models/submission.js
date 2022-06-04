@@ -15,6 +15,11 @@ const SubmissionSchema = new mongoose.Schema({
     deadline : {
         type : String,
         required : true
+    },
+
+    panel : {
+        type : String,
+        required : true
     }
 
 });

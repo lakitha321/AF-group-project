@@ -51,6 +51,10 @@ export default function AllSubmissions(){
             <Link to="/createsubmission">
             <button type="button" class="btn btn-success">Create submission</button>
             </Link>
+            &nbsp;&nbsp;
+            <Link to="/submittedfiles">
+            <button type="button" class="btn btn-light">View submitted files</button>
+            </Link>
             <div>
            <table className="table table-hover mt-3" style={{ color: 'white'}}>
                <thead>
@@ -59,6 +63,7 @@ export default function AllSubmissions(){
                     <th>Name</th>
                     <th>Description</th>
                     <th>Deadline</th>
+                    <th>Panel access?</th>
                     <th ></th>
                    </tr>
                </thead>
@@ -71,6 +76,7 @@ export default function AllSubmissions(){
                                     <td>{val.name}</td>
                                     <td>{val.desc}</td>
                                     <td>{val.deadline}</td>
+                                    <td>{val.panel}</td>
                                     <td align="right">
                                         <button type="button" class="btn btn-primary" style={{opacity: "70%"}} onClick={() => passValues(val._id, val.name, val.desc, val.deadline)}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

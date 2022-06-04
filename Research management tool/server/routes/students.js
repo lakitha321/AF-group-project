@@ -28,9 +28,9 @@ router.route("/add").post(async (req,res)=>{
     })
 
     await newStudent.save().then(()=>{
-        res.json("Student Added!")
+        res.json("Student Added!");
     }).catch((err)=>{
-        console.log(err);
+        res.json(err)
     })
 
 })

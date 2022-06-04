@@ -19,7 +19,7 @@ const StudentFilesList = () => {
       try {
         const { data } = await axios.get("http://localhost:8070/assignment/getAllAssigbments/");
         setErrorMsg('');
-        setFilesList(data);
+        setFilesList(data.dat);
       } catch (error) {
         error.response && setErrorMsg(error.response.data);
       }
@@ -54,7 +54,6 @@ const StudentFilesList = () => {
               ({ _id, title, description, file_path, file_mimetype }) => (
                 <div className="col-4" align="center" key={_id}>
                     <Card style={{ width: '15rem', backgroundColor: 'transparent', borderColor: 'white' }}>
-                    {/* <Card.Img variant="top" src="https://www.kindpng.com/picc/m/200-2007626_file-icon-hd-png-download.png" /> */}
                     <Card.Body>
                         <Card.Title style={{ color: 'white'}}>{title}</Card.Title>
                         <Card.Text style={{ color: 'white'}}>

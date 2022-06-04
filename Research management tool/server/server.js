@@ -13,6 +13,9 @@ const submissionRouter = require("./routes/submissions");
 const studentSubmissionRouter = require("./routes/studentSubmissions");
 const fileRoute = require("./routes/templates");
 const groupRoute = require("./routes/studentgroups");
+const requestRoute = require("./routes/requests");
+const chat = require("./routes/chats");
+const panel = require("./routes/panels");
 
 const PORT = process.env.PORT || 8070;
 
@@ -20,8 +23,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const URI = process.env.MONGODB_URL;
-
-//mongoose.connect(URI, () => console.log("Database connected"))
 
 mongoose.connect(URI, {
   useCreateIndex: true,
@@ -43,6 +44,9 @@ app.use("/submission", submissionRouter);
 app.use("/studentsubmission", studentSubmissionRouter);
 app.use("/assignment", fileRoute);
 app.use("/studentgroup", groupRoute);
+app.use("/request", requestRoute);
+app.use("/chat", chat);
+app.use("/panel", panel);
 
 app.listen(PORT, () => {
   console.log(`Server is up and running at port no: ${PORT}`)

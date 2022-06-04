@@ -52,6 +52,10 @@ const StaffSchema = new mongoose.Schema({
 
     research : {
         type : String,
+    },
+
+    panel : {
+        type : String,
     }
 
 });

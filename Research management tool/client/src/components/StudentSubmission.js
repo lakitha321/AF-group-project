@@ -16,8 +16,8 @@ export default function StudentSubmissions(){
 
     const [submissionArr, setSubmission] = useState([]);
 
-    function passValues(id, name){
-        navigate(`/studentsubarea/${id}/${name}/${stgrp}`);
+    function passValues(id, name, panel){
+        navigate(`/studentsubarea/${id}/${name}/${stgrp}/${panel}`);
     }
     
 
@@ -45,8 +45,9 @@ export default function StudentSubmissions(){
                                         <Card.Title align="center" style={{ color: 'white'}}>{val.name}</Card.Title>
                                         <Card.Subtitle align="center" style={{color:"red"}}>Deadline : {val.deadline}</Card.Subtitle>
                                         <Card.Text align="center" style={{ color: 'white'}}>{val.desc}</Card.Text>
+                                        <Card.Text align="center" style={{ color: 'white'}}>Panel access : {val.panel}</Card.Text>
                                         <hr style={{ color: 'white'}} />
-                                        <button type="button" class="btn btn-success" style={{width: '20rem'}} onClick={() => passValues(val._id, val.name)}>
+                                        <button type="button" class="btn btn-success" style={{width: '20rem'}} onClick={() => passValues(val._id, val.name, val.panel)}>
                                             Check out
                                         </button>
                                         <br/>  

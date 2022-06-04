@@ -71,7 +71,7 @@ const UploadArea = (props) => {
   };
 
   return (
-        <div className="container"><br/><br/><br/>
+        <div className="container" align='center' style={{color:'white'}}><br/><br/><br/>
       <Form className="search-form" onSubmit={handleOnSubmit}>
         {errorMsg && <p className="errorMsg">{errorMsg}</p>}
         <Row>

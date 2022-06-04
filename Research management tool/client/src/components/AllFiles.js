@@ -18,7 +18,7 @@ const FilesList = () => {
       try {
         const { data } = await axios.get("http://localhost:8070/assignment/getAllAssigbments/");
         setErrorMsg('');
-        setFilesList(data);
+        setFilesList(data.dat);
       } catch (error) {
         error.response && setErrorMsg(error.response.data);
       }
@@ -49,14 +49,15 @@ const FilesList = () => {
     const result1 = await confirm("Are you sure do you want to delete?");
     
     if (result1) {
-      const result2 = await confirm("Your submission wil be permenantly deleted!!!");
+      const result2 = await confirm("This file wil be permenantly deleted!!!");
       if(result2){
         axios.delete(`http://localhost:8070/assignment/deleteSubmission/${id}`).then((res) => {
             alert("Deleted");
+            window.location.assign("/submissions");
         }).catch((err) => {
             alert(err);
         });
-      window.location.assign("/submissions");
+      
       }
       
     }

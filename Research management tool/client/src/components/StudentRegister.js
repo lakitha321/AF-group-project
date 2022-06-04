@@ -38,9 +38,8 @@ function StudentRegister() {
         
         setValidated(true); 
       }
-      
+    
     };
-
     const sendData = (e) => {
 
         const newStudent = {
@@ -67,7 +66,7 @@ function StudentRegister() {
             <br/><br/>
             <Card style={{ width: '68rem', margin:"auto", backgroundColor : 'transparent' }}>
             <Card.Body>
-                <Card.Title style={{color : 'white'}} align='center'>Student registration</Card.Title>
+                <Card.Title style={{color : 'white'}}>Student registration</Card.Title>
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row className="mb-3">
                     <Form.Group as={Row} md="5" controlId="validationCustom04">
@@ -92,7 +91,7 @@ function StudentRegister() {
                         Please provide a valid Email.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="2" controlId="validationCustom04" style={{width: '15rem'}}>
+                    <Form.Group as={Col} md="2" controlId="validationCustom04">
                         <Form.Label style={{color : 'white'}} className='mt-3'>Age</Form.Label>
                         <Form.Control type="text" placeholder="Age" pattern="[0-9][0-9]" style={{backgroundColor : 'transparent', color : 'white' ,borderColor : 'white' }}
                         onChange={(e) => {
@@ -103,7 +102,7 @@ function StudentRegister() {
                         Please provide a valid Age (XX).
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="2" controlId="validationCustom04" style={{width: '15rem'}}>
+                    <Form.Group as={Col} md="2" controlId="validationCustom04">
                         <Form.Label style={{color : 'white'}} className='mt-3'>Gender</Form.Label>
                         <select id="inputState" class="form-select" style={{backgroundColor : 'transparent', color : 'white' ,borderColor : 'white' }}
                         onChange={(e) => {
@@ -118,7 +117,7 @@ function StudentRegister() {
                         Please provide a valid Gender.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustom04" style={{width: '36.5rem'}}>
+                    <Form.Group as={Col} md="4" controlId="validationCustom04">
                         <Form.Label style={{color : 'white'}} className='mt-3'>NIC</Form.Label>
                         <Form.Control type="text" placeholder="NIC" pattern="[0-9]{9,12}" style={{backgroundColor : 'transparent', color : 'white' ,borderColor : 'white' }}
                         onChange={(e) => {
@@ -140,7 +139,7 @@ function StudentRegister() {
                         Please provide a valid Address.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom04" style={{width: '30rem'}}>
+                    <Form.Group as={Col} md="3" controlId="validationCustom04">
                         <Form.Label style={{color : 'white'}} className='mt-3'>Mobile number</Form.Label>
                         <Form.Control type="tel" placeholder="Mobile number" pattern="[0][0-9]{9}" style={{backgroundColor : 'transparent', color : 'white' ,borderColor : 'white' }}
                         onChange={(e) => {
@@ -151,7 +150,7 @@ function StudentRegister() {
                         Please provide a valid Mobile number (0XXXXXXXXX).
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom05" className='mb-5' style={{width: '36.5rem'}}>
+                    <Form.Group as={Col} md="3" controlId="validationCustom05" className='mb-5'>
                         <Form.Label style={{color : 'white'}} className='mt-3'>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" style={{backgroundColor : 'transparent', color : 'white' ,borderColor : 'white' }}
                         onChange={(e) => {
@@ -164,10 +163,7 @@ function StudentRegister() {
                         </Form.Control.Feedback>
                     </Form.Group>
                     </Row>
-                    <div align='center'>
-                    <Button type="submit" style={{width: '28rem'}}>Sign in</Button>
-                    </div>
-                    <br/><br/>
+                    <Button type="submit" style={{width: '18rem'}}>Sign in</Button>
                 </Form>
             </Card.Body>
             </Card>

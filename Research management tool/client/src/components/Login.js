@@ -27,7 +27,7 @@ function Login() {
             studentNav();
         }
         if(role === "Staff"){
-            alert("Staff");
+            staffNav();
         }
         if(role === "Admin"){
             adminNav();
@@ -47,11 +47,11 @@ function Login() {
 
     const studentNav = () => {
 
-        const validateStudent = {
+        const validateStaff = {
             password
         }
 
-        axios.post(`http://localhost:8070/student/log/${email}`, validateStudent).then((res)=>{
+        axios.post(`http://localhost:8070/student/log/${email}`, validateStaff).then((res)=>{
             if(res.data.status){
 
                 localStorage.setItem("sid", res.data.Students._id);
@@ -69,6 +69,40 @@ function Login() {
 
                 dispatch({type:"USER", payload:1})
                 window.location.assign('/home');
+            }
+            else{
+                alert('Invalid username or password')
+            }
+        }).catch((err)=>{
+            alert(err);
+        })
+    }
+
+    const staffNav = () => {
+
+        const validateStudent = {
+            password
+        }
+
+        axios.post(`http://localhost:8070/staff/log/${email}`, validateStudent).then((res)=>{
+            if(res.data.status){
+
+                localStorage.setItem("stfid", res.data.Staffs._id);
+                localStorage.setItem("stfname", res.data.Staffs.name);
+                localStorage.setItem("stfemail", res.data.Staffs.email);
+                localStorage.setItem("stfage", res.data.Staffs.age);
+                localStorage.setItem("stfgender", res.data.Staffs.gender);
+                localStorage.setItem("stfnic", res.data.Staffs.nic);
+                localStorage.setItem("stfaddress", res.data.Staffs.address);
+                localStorage.setItem("stfmobile", res.data.Staffs.mobile);
+                localStorage.setItem("stfpassword", res.data.Staffs.password);
+                localStorage.setItem("stfrole", res.data.Staffs.role);
+                localStorage.setItem("stfresearch", res.data.Staffs.research);
+
+                alert('loged successfuly');
+
+                dispatch({type:"USER", payload:3})
+                window.location.assign('/stfhome');
             }
             else{
                 alert('Invalid username or password')
@@ -136,9 +170,9 @@ function Login() {
                         }}
                         required>
                         <option selected style={{backgroundColor : 'black'}}></option>
-                        <option style={{backgroundColor : 'black'}}>Student</option>
-                        <option style={{backgroundColor : 'black'}}>Staff</option>
-                        <option style={{backgroundColor : 'black'}}>Admin</option>
+                        <option style={{backgroundColor : 'black', color : 'white'}}>Student</option>
+                        <option style={{backgroundColor : 'black', color : 'white'}}>Staff</option>
+                        <option style={{backgroundColor : 'black', color : 'white'}}>Admin</option>
                         </select>
                         <Form.Control.Feedback type="invalid">
                         Please select your Role

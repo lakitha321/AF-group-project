@@ -79,6 +79,58 @@ router.route("/updatemember/:name").put(async (req,res)=>{
 
 });
 
+router.route("/updateSupervisorAndTopic/:name").put(async (req,res)=>{
+
+    let name = req.params.name;
+    const supervisor = req.body.supervisor;
+    const topic = req.body.topic;
+
+    const update = await Group.findOneAndUpdate({name:name}, {supervisor:supervisor, topic:topic}).then(()=>{
+        res.json({"msg":"Group Updated", "status":true});
+    }).catch((err)=>{
+        res.json({"msg":"Erro", "status":false});
+    })
+
+});
+
+router.route("/updateCoSupervisor/:name").put(async (req,res)=>{
+
+    let name = req.params.name;
+    const cosupervisor = req.body.cosupervisor;
+
+    const update = await Group.findOneAndUpdate({name:name}, {cosupervisor:cosupervisor}).then(()=>{
+        res.json({"msg":"Group Updated", "status":true});
+    }).catch((err)=>{
+        res.json({"msg":"Erro", "status":false});
+    })
+
+});
+
+router.route("/updatePanel/:id").put(async (req,res)=>{
+
+    let id = req.params.id;
+    const name = req.body.name;
+
+    const update = await Group.findByIdAndUpdate(id, {panel:name}).then(()=>{
+        res.json(`${name} assigned`);
+    }).catch((err)=>{
+        res.json("error");
+    })
+
+});
+
+router.route("/updateGroupStaff/:id").put(async (req,res)=>{
+
+    let id = req.params.id;
+
+    const update = await Group.findOneAndUpdate({name:id}, {supervisor:"Not defined", topic:"Not defined", cosupervisor:"Not defined", panel:"Not defined"}).then(()=>{
+        res.json("Group updated");
+    }).catch((err)=>{
+        res.json("error");
+    })
+
+});
+
 router.route("/delete/:id").delete(async (req,res)=>{
 
     let userId = req.params.id;
@@ -101,6 +153,43 @@ router.route("/get/:name").get(async (req,res)=>{
     }).catch((err)=>{
         res.status(500).send({status: false});
     })
+
+});
+
+router.route("/getbypanel/:name").get(async (req,res)=>{
+
+    let name = req.params.name;
+
+    const Groups = await Group.find({panel:name}).then((Groups)=>{
+        res.json(Groups)
+    }).catch((err)=>{
+        res.status(500).send({status: false});
+    })
+
+});
+
+router.route("/get/:staff/:role").get(async (req,res)=>{
+
+    let staff = req.params.staff;
+    let role = req.params.role;
+
+    if(role === "Co-supervisor"){
+
+        const Groups = await Group.find({cosupervisor:staff}).then((Groups)=>{
+            res.json(Groups)
+        }).catch((err)=>{
+            res.status(500).send({status: false});
+        })
+    }
+
+    else if(role === "Supervisor"){
+
+        const Groups = await Group.find({supervisor:staff}).then((Groups)=>{
+            res.json(Groups)
+        }).catch((err)=>{
+            res.status(500).send({status: false});
+        })
+    }
 
 });
 

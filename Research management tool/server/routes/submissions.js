@@ -7,11 +7,13 @@ router.route("/add").post((req,res)=>{
     const name = req.body.name;
     const desc = req.body.desc;
     const deadline = req.body.deadline;
+    const panel = req.body.panel;
 
     const newSubmission = new Submission({
         name,
         desc,
-        deadline
+        deadline,
+        panel
     })
 
     newSubmission.save().then(()=>{
@@ -35,12 +37,13 @@ router.route("/").get((req,res)=>{
 router.route("/update/:id").put(async (req,res)=>{
 
     let id = req.params.id;
-    const {name, desc, deadline} = req.body;
+    const {name, desc, deadline, panel} = req.body;
 
     const updateSubmission = {
         name,
         desc,
-        deadline
+        deadline,
+        panel
     }
 
     const update = await Submission.findByIdAndUpdate(id, updateSubmission).then(()=>{
